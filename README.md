@@ -1,6 +1,6 @@
 # Representing and Clustering Error in Offensive Lanuage Detection
 
-This repository contains all the code and files used to reproduce the results from the paper. 
+This repository contains all the code and files necessary to reproduce the results from the paper. 
 
 ## Project structure
 
