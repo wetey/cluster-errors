@@ -19,7 +19,7 @@ The project is structured as follows:
 │   └── 📂 evaluation: evaluation results organized by language
 │   └── 📂 figures: generated clustering plots and heatmaps
 ├── 📂 scripts/: contains scripts used to fine-tune the models.
-├── 📂 cluster: scripts to run the clustering.
+├── 📂 cluster: scripts to generate the embeddings and run the clustering.
 ```
 More information about the specific files in each directory can be found in the README.md in each directory
 ## Installation
