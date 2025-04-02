@@ -71,23 +71,42 @@ def majority_label(dataset):
 
     print("Average count_with_majority per cluster:", average_count_with_majority)
     
-def display_label_distribution(dataset, title = 'N\A'):
+def display_label_distribution(dataset,name = 'N/A', title = 'N\A'):
+
+    color_range = []
+    if 'lhsab' in name:
+        color_range = ['#AAB9E5','#ECC2D3', '#FBE2C5']
+    else:
+        color_range = ['#AAB9E5','#FBE2C5']
     bar_chart = alt.Chart(dataset).mark_bar().encode(
-    x=alt.X("cluster:N").title('Cluster Number'
-                               ).axis(labelColor='black', 
-                                      labelFontSize=8, 
-                                      titleColor='black'),
-    y=alt.Y("count(string_pred)").stack("normalize"
-                                       ).title('% Predicted Label'
-                                               ).axis(labelColor='black', 
-                                                      labelFontSize=8,
-                                                      titleColor='black'),
-    color=alt.Color('string_pred').scale(range=['#5254a3', '#8ca252', '#bd9e39']).title("Predicted Label").legend(titleColor='black', labelColor='black')
+        x=alt.X("cluster:N").axis(title='Cluster',
+                                        labelColor='black', 
+                                        labelFontSize=16, 
+                                        labelAngle=0,
+                                        titleColor='black',
+                                        titleFontSize=20,
+                                        tickWidth=1),
+        y=alt.Y("count(string_pred)").stack("normalize"
+                                        ).axis(title='% predicted label',
+                                                    labelColor='black', 
+                                                    labelFontSize=16,
+                                                    titleColor='black',
+                                                    titleFontSize=20),
+        color=alt.Color('string_pred'
+                        ).scale(range=color_range
+                        ).title("Predicted Label"
+                        ).legend(titleColor='black', 
+                                 labelColor='black',
+                                 labelFontSize=14, 
+                                 titleFontSize=16,
+                                 title='Predicted')
     ).properties(
-            width = 150,
-            height = 150,
-            title=alt.Title(text=title)
+            width = 450,
+            height = 300,
+            title=alt.Title(text=title, fontSize=30)
     )
+    if name != 'N/A':
+        bar_chart.save(f'figures/{name}_labels.svg')
     return bar_chart
 
 def print_cluster_size(clusters):
@@ -129,11 +148,12 @@ def get_target_group_distribution(dataset, name='N/A'):
                     text_auto=".2f",    
                     color_continuous_scale='Purples',
                     zmin=0,
-                    zmax=1)
+                    zmax=1,
+                    aspect='auto')
     fig.update_layout(
         showlegend=False,
-        xaxis_title="Target Groups",
-        yaxis_title="Clusters",
+        # xaxis_title="Target Group",
+        # yaxis_title="Cluster",
         xaxis=dict(
             tickmode='array',
             tickvals=[i for i in range(len(cluster_percentages_df.columns))],
@@ -142,23 +162,27 @@ def get_target_group_distribution(dataset, name='N/A'):
             scaleanchor='y',
             scaleratio=1,
             griddash = 'solid',
-            showgrid = True
+            showgrid = True,
+            tickfont=dict(size=20)
         ),
         yaxis=dict(
             tickmode='array',
             tickvals=[i for i in range(len(cluster_percentages_df.index))],
             ticktext=[f"{cluster}" for cluster in cluster_percentages_df.index],
             scaleanchor='x',
-            scaleratio=1
+            scaleratio=1,
+            tickfont=dict(size=20)
         ),
         margin=dict(t=20, b=20, l=20, r=20),
-        width = 400,
-        height = 400
+        width = 500,
+        height = 500
     )
     fig.update_coloraxes(showscale=False) 
+    fig.update_traces(textfont_size=20)
     fig.show()
     if name != 'N/A':
         fig.write_image(f'figures/{name}_targets.pdf', format='pdf')
+        fig.write_image(f'figures/{name}_targets.svg', format='svg')
 
 def add_target_groups(original_dataset, dataset):
 

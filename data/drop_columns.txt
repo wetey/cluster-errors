@@ -77,3 +77,6 @@ annotator_sexuality_gay
 annotator_sexuality_straight
 annotator_sexuality_other
 label
+pred
+string_label
+string_pred
