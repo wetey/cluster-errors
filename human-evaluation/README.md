@@ -21,6 +21,6 @@ This directory contains scripts used to generate the surveys in a format that Qu
 
 This notebook contains the human evaluation analysis for English and Arabic for all approaches. 
 
-## [evaluation.utils.py](evaluation.utils.py)
+## [evaluation.utils.py](evaluation_utils.py)
 
 THis python script is not meant to be run. The methods defined are called in [human_evaluation.ipynb](human_evaluation.ipynb)
