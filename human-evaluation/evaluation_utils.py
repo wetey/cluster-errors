@@ -103,7 +103,7 @@ def display_label_distribution(dataset,name = 'N/A', title = 'N\A'):
     ).properties(
             width = 450,
             height = 300,
-            title=alt.Title(text=title, fontSize=30)
+            # title=alt.Title(text=title, fontSize=30)
     )
     if name != 'N/A':
         bar_chart.save(f'figures/{name}_labels.svg')
@@ -151,9 +151,13 @@ def get_target_group_distribution(dataset, name='N/A'):
                     zmax=1,
                     aspect='auto')
     fig.update_layout(
+        title=dict(text='Target group distribution',
+                   font=dict(size=30, color='black'),
+                   xanchor='center',
+                   x=0.50),
         showlegend=False,
         # xaxis_title="Target Group",
-        # yaxis_title="Cluster",
+        yaxis_title="Cluster",
         xaxis=dict(
             tickmode='array',
             tickvals=[i for i in range(len(cluster_percentages_df.columns))],
@@ -166,6 +170,8 @@ def get_target_group_distribution(dataset, name='N/A'):
             tickfont=dict(size=20)
         ),
         yaxis=dict(
+            title=dict(text='Cluster',
+                     font=dict(size=20, color='black')),
             tickmode='array',
             tickvals=[i for i in range(len(cluster_percentages_df.index))],
             ticktext=[f"{cluster}" for cluster in cluster_percentages_df.index],
@@ -173,9 +179,9 @@ def get_target_group_distribution(dataset, name='N/A'):
             scaleratio=1,
             tickfont=dict(size=20)
         ),
-        margin=dict(t=20, b=20, l=20, r=20),
-        width = 500,
-        height = 500
+        margin=dict(b=20, l=20, r=20),
+        width = 600,
+        height = 600
     )
     fig.update_coloraxes(showscale=False) 
     fig.update_traces(textfont_size=20)
