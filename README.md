@@ -67,3 +67,25 @@ for more information refer to this [README](cluster/README.md). after running th
 
 # Cite
 
+```bibtex
+@inproceedings{otey-etal-2025-representing,
+                title = "Representing and Clustering Errors in Offensive Language Detection",
+                author = "Otey, Jood  and
+                Biester, Laura  and
+                Wilson, Steven R",
+                editor = "Ebrahimi, Abteen  and
+                Haider, Samar  and
+                Liu, Emmy  and
+                Haider, Sammar  and
+                Leonor Pacheco, Maria  and
+                Wein, Shira",
+                booktitle = "Proceedings of the 2025 Conference of the Nations of the Americas Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume 4: Student Research Workshop)",
+                month = apr,
+                year = "2025",
+                address = "Albuquerque, USA",
+                publisher = "Association for Computational Linguistics",
+                url = "https://aclanthology.org/2025.naacl-srw.36/",
+                pages = "368--380",
+                ISBN = "979-8-89176-192-6"
+                } 
+```
